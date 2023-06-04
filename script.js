@@ -16,6 +16,8 @@ let currentScore = 0;
 
 let playing;
 
+let scoreToGet;
+
 resetGame();
 
 function resetGame() {
@@ -31,6 +33,7 @@ function resetGame() {
   player1Element.classList.remove('player--winner');
   player0Element.classList.add('player--active');
   player1Element.classList.remove('player-active');
+  scoreToGet = Number(prompt('How many points to win?'));
 }
 
 diceRoleElement.addEventListener('click', rollDice);
@@ -72,7 +75,7 @@ function hold() {
   if (currentPlayer === 0) {
     score0Element.textContent =
       Number(score0Element.textContent) + currentScore;
-    if (Number(score0Element.textContent) >= 50) {
+    if (Number(score0Element.textContent) >= scoreToGet) {
       document.querySelector('.player--0').classList.add('player--winner');
       player0Element.classList.remove('player--active');
       playing = false;
@@ -80,7 +83,7 @@ function hold() {
   } else {
     score1Element.textContent =
       Number(score1Element.textContent) + currentScore;
-    if (Number(score1Element.textContent) >= 10) {
+    if (Number(score1Element.textContent) >= scoreToGet) {
       document.querySelector('.player--1').classList.add('player--winner');
       player1Element.classList.remove('player--active');
       playing = false;
